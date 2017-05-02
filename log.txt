@@ -1,0 +1,130 @@
+MacBook-Pro-Mansur:WEB ele638$ rm -rf base_app_m/
+MacBook-Pro-Mansur:WEB ele638$ git clone https://github.com/radigin/base_app_m
+Cloning into 'base_app_m'...
+remote: Counting objects: 228, done.
+remote: Compressing objects: 100% (181/181), done.
+remote: Total 228 (delta 34), reused 228 (delta 34), pack-reused 0
+Receiving objects: 100% (228/228), 480.67 KiB | 51.00 KiB/s, done.
+Resolving deltas: 100% (34/34), done.
+MacBook-Pro-Mansur:WEB ele638$ cd base_app_m/
+MacBook-Pro-Mansur:base_app_m ele638$ ls
+Gemfile		README.md	Rakefile	bin		config.ru	lib		public		vendor
+Gemfile.lock	README.rdoc	app		config		db		log		test
+MacBook-Pro-Mansur:base_app_m ele638$ rm -rf Gemfile.lock
+MacBook-Pro-Mansur:base_app_m ele638$ bundle install
+Fetching gem metadata from https://rubygems.org/..........
+Fetching version metadata from https://rubygems.org/..
+Fetching dependency metadata from https://rubygems.org/.
+Resolving dependencies....
+Using rake 12.0.0
+Using i18n 0.8.1
+Using json 1.8.6
+Using minitest 5.10.1
+Using thread_safe 0.3.6
+Using builder 3.2.3
+Using erubis 2.7.0
+Using mini_portile2 2.1.0
+Using rack 1.6.5
+Using mime-types-data 3.2016.0521
+Using arel 6.0.4
+Using execjs 2.7.0
+Using bcrypt 3.1.11
+Using debug_inspector 0.0.2
+Using sass 3.4.23
+Using bundler 1.14.6
+Using byebug 9.0.6
+Using climate_control 0.1.0
+Using coffee-script-source 1.12.2
+Using thor 0.19.4
+Using concurrent-ruby 1.0.5
+Using multipart-post 2.0.0
+Using tilt 2.0.7
+Using sexp_processor 4.9.0
+Using multi_json 1.12.1
+Using jwt 1.5.6
+Using kaminari-core 1.0.1
+Using libv8 3.16.14.19 (x86_64-darwin-16)
+Using mimemagic 0.3.2
+Using multi_xml 0.6.0
+Using oauth 0.5.1
+Using request_store 1.3.2
+Using pg 0.18.4
+Using puma 3.8.2
+Using rdoc 4.3.0
+Using ref 2.0.0
+Using turbolinks-source 5.0.0
+Using tzinfo 1.2.3
+Using nokogiri 1.7.1
+Using rack-test 0.6.3
+Using mime-types 3.1
+Using autoprefixer-rails 6.7.7.2
+Using uglifier 3.2.0
+Using binding_of_caller 0.7.2
+Using cocaine 0.5.8
+Using coffee-script 2.4.1
+Using sprockets 3.7.1
+Using faraday 0.11.0
+Using haml 4.0.7
+Using ruby_parser 3.9.0
+Using sdoc 0.4.2
+Using therubyracer 0.12.3
+Using turbolinks 5.0.1
+Using activesupport 4.2.1
+Using loofah 2.0.3
+Installing mail 2.6.5
+Using bootstrap-sass 3.3.7
+Using oauth2 1.3.1
+Using html2haml 2.1.0
+Using rails-deprecated_sanitizer 1.0.3
+Using globalid 0.4.0
+Using activemodel 4.2.1
+Using jbuilder 2.6.3
+Using spring 2.0.1
+Using rails-html-sanitizer 1.0.3
+Using sorcery 0.10.3
+Using rails-dom-testing 1.0.8
+Using activejob 4.2.1
+Using activerecord 4.2.1
+Using paperclip 5.1.0
+Using actionview 4.2.1
+Using kaminari-activerecord 1.0.1
+Installing paper_trail 7.0.2
+Using actionpack 4.2.1
+Using kaminari-actionview 1.0.1
+Using actionmailer 4.2.1
+Using railties 4.2.1
+Using sprockets-rails 3.2.0
+Using kaminari 1.0.1
+Using coffee-rails 4.1.1
+Using font-awesome-rails 4.7.0.1
+Using haml-rails 0.9.0
+Using jquery-rails 4.3.1
+Using rails-i18n 4.0.9
+Using rails 4.2.1
+Using sass-rails 5.0.6
+Using web-console 2.3.0
+Using kaminari-bootstrap 3.0.1
+Bundle complete! 23 Gemfile dependencies, 88 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+MacBook-Pro-Mansur:base_app_m ele638$ rails s
+/Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/railties-5.0.2/lib/rails/app_loader.rb:40: warning: Insecure world writable dir /usr/local in PATH, mode 040777
+Array values in the parameter to `Gem.paths=` are deprecated.
+Please use a String or nil.
+An Array ({"GEM_PATH"=>["/Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0", "/Volumes/DATA/ele638/.gem/ruby/2.4.0"]}) was passed in from bin/rails:3:in `load'
+/Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:121: warning: constant ::Fixnum is deprecated
+/Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:121: warning: constant ::Bignum is deprecated
+/Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:125:in `block (2 levels) in <class:Numeric>': stack level too deep (SystemStackError)
+	from /Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:131:in `block (2 levels) in <class:Numeric>'
+	from /Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:131:in `block (2 levels) in <class:Numeric>'
+	from /Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:131:in `block (2 levels) in <class:Numeric>'
+	from /Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:131:in `block (2 levels) in <class:Numeric>'
+	from /Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:131:in `block (2 levels) in <class:Numeric>'
+	from /Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:131:in `block (2 levels) in <class:Numeric>'
+	from /Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:131:in `block (2 levels) in <class:Numeric>'
+	from /Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/activesupport-4.2.1/lib/active_support/core_ext/numeric/conversions.rb:131:in `block (2 levels) in <class:Numeric>'
+	 ... 5525 levels...
+	from /Volumes/DATA/ele638/.rbenv/versions/2.4.0/lib/ruby/site_ruby/2.4.0/rubygems/core_ext/kernel_require.rb:68:in `require'
+	from /Volumes/DATA/ele638/Documents/MSIU/WEB/base_app_m/bin/spring:13:in `<top (required)>'
+	from bin/rails:3:in `load'
+	from bin/rails:3:in `<main>'
+MacBook-Pro-Mansur:base_app_m ele638$

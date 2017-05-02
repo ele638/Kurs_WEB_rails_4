@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Number:
+  = @my_rack.number
+%p
+  %b My room:
+  = @my_rack.my_room.name
+%p
+  %b Places:
+  = @my_rack.places
+%p
+  %b Height:
+  = @my_rack.height
+%p
+  %b Width:
+  = @my_rack.width
+%p
+  %b Length:
+  = @my_rack.length
+%p
+  %b Max weight:
+  = @my_rack.max_weight
+
+= link_to 'Edit', edit_my_rack_path(@my_rack)
+\|
+= link_to 'Back', my_racks_path

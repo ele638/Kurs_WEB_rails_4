@@ -1,0 +1,37 @@
+%h1 Listing my_items
+
+%table
+  %thead
+    %tr
+      %th Height
+      %th Width
+      %th Length
+      %th Weight
+      %th Incoming date
+      %th My client
+      %th Issue date
+      %th My rack
+      %th Position
+      %th
+      %th
+      %th
+
+  %tbody
+    - @my_items.each do |my_item|
+      %tr
+        %td= my_item.height
+        %td= my_item.width
+        %td= my_item.length
+        %td= my_item.weight
+        %td= my_item.incoming_date
+        %td= my_item.my_client.name
+        %td= my_item.issue_date
+        %td= my_item.my_rack.collection_select_name
+        %td= my_item.position
+        %td= link_to 'Show', my_item
+        %td= link_to 'Edit', edit_my_item_path(my_item)
+        %td= link_to 'Destroy', my_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New My item', new_my_item_path

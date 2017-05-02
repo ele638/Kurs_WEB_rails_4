@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Height:
+  = @my_item.height
+%p
+  %b Width:
+  = @my_item.width
+%p
+  %b Length:
+  = @my_item.length
+%p
+  %b Weight:
+  = @my_item.weight
+%p
+  %b Incoming date:
+  = @my_item.incoming_date
+%p
+  %b My client:
+  = @my_item.my_client.name
+%p
+  %b Issue date:
+  = @my_item.issue_date
+%p
+  %b My rack:
+  = @my_item.my_rack.collection_select_name
+%p
+  %b Position:
+  = @my_item.position
+
+= link_to 'Edit', edit_my_item_path(@my_item)
+\|
+= link_to 'Back', my_items_path

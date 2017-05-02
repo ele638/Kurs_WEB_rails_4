@@ -1,0 +1,37 @@
+= form_for @my_item do |f|
+  - if @my_item.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@my_item.errors.count, "error")} prohibited this my_item from being saved:"
+      %ul
+        - @my_item.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :height
+    = f.text_field :height
+  .field
+    = f.label :width
+    = f.text_field :width
+  .field
+    = f.label :length
+    = f.text_field :length
+  .field
+    = f.label :weight
+    = f.text_field :weight
+  .field
+    = f.label :incoming_date
+    = f.date_select :incoming_date
+  .field
+    = f.label :my_client
+    = f.collection_select :my_client_id, MyClient.all, :id, :name
+  .field
+    = f.label :issue_date
+    = f.date_select :issue_date
+  .field
+    = f.label :my_rack
+    = f.collection_select :my_rack_id, MyRack.all, :id, :collection_select_name
+  .field
+    = f.label :position
+    = f.number_field :position
+  .actions
+    = f.submit 'Save'

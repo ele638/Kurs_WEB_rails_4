@@ -1,0 +1,33 @@
+%h1 Listing my_racks
+
+%table
+  %thead
+    %tr
+      %th Number
+      %th My room
+      %th Places
+      %th Height
+      %th Width
+      %th Length
+      %th Max weight
+      %th
+      %th
+      %th
+
+  %tbody
+    - @my_racks.each do |my_rack|
+      %tr
+        %td= my_rack.number
+        %td= my_rack.my_room.name
+        %td= my_rack.places
+        %td= my_rack.height
+        %td= my_rack.width
+        %td= my_rack.length
+        %td= my_rack.max_weight
+        %td= link_to 'Show', my_rack
+        %td= link_to 'Edit', edit_my_rack_path(my_rack)
+        %td= link_to 'Destroy', my_rack, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New My rack', new_my_rack_path

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @my_room.name
+%p
+  %b Volume:
+  = @my_room.volume
+
+= link_to 'Edit', edit_my_room_path(@my_room)
+\|
+= link_to 'Back', my_rooms_path
