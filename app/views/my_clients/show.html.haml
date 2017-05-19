@@ -1,12 +1,13 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = @my_client.name
+  %li
+    = link_to 'Клиенты', my_clients_path
+  %li
+    Администрирование
 
-%p
-  %b Name:
-  = @my_client.name
-%p
-  %b Details:
-  = @my_client.details
+%h1= 'Клиент ' + @my_client.name
 
-= link_to 'Edit', edit_my_client_path(@my_client)
-\|
-= link_to 'Back', my_clients_path
+%dl
+  %dt= MyClient.human_attribute_name(:details)
+  %dd= @my_client.details

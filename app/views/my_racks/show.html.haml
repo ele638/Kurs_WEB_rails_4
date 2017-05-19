@@ -1,27 +1,23 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = @my_rack.number
+  %li
+    = link_to 'Стелажи', my_racks_path
+  %li
+    Администрирование
 
-%p
-  %b Number:
-  = @my_rack.number
-%p
-  %b My room:
-  = @my_rack.my_room.name
-%p
-  %b Places:
-  = @my_rack.places
-%p
-  %b Height:
-  = @my_rack.height
-%p
-  %b Width:
-  = @my_rack.width
-%p
-  %b Length:
-  = @my_rack.length
-%p
-  %b Max weight:
-  = @my_rack.max_weight
+%h1= 'Стелаж ' + @my_rack.number.to_s
 
-= link_to 'Edit', edit_my_rack_path(@my_rack)
-\|
-= link_to 'Back', my_racks_path
+%dl
+  %dt= MyRack.human_attribute_name(:my_room_id)
+  %dd= link_to @my_rack.my_room.name, @my_rack.my_room
+  %dt= MyRack.human_attribute_name(:places)
+  %dd= @my_rack.places
+  %dt= MyRack.human_attribute_name(:height)
+  %dd= @my_rack.height
+  %dt= MyRack.human_attribute_name(:width)
+  %dd= @my_rack.width
+  %dt= MyRack.human_attribute_name(:length)
+  %dd= @my_rack.length
+  %dt= MyRack.human_attribute_name(:max_weight)
+  %dd= @my_rack.max_weight

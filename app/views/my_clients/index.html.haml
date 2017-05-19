@@ -1,23 +1,36 @@
-%h1 Listing my_clients
+-#
+  Эта страница не адаптивна! Так как сделать подобные сраницы адаптивными -
+  это отдельное задание!
+=breadcrumb_tag do
+  %li.active
+    Клиенты
+  %li
+    Просмотр
 
-%table
+.page-header
+  %h1= t('headers.my_clients.index')
+
+%table.table.table-hover.table-striped
+  %caption
+    = link_to new_my_client_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.my_client')
   %thead
     %tr
-      %th Name
-      %th Details
+      %th= MyClient.human_attribute_name(:name)
+      %th= MyClient.human_attribute_name(:details)
       %th
-      %th
-      %th
-
   %tbody
-    - @my_clients.each do |my_client|
+    - @my_clients.each do |client|
       %tr
-        %td= my_client.name
-        %td= my_client.details
-        %td= link_to 'Show', my_client
-        %td= link_to 'Edit', edit_my_client_path(my_client)
-        %td= link_to 'Destroy', my_client, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New My client', new_my_client_path
+        %td.center= client.name
+        %td.center= client.details
+        %td.right
+          = link_to edit_my_client_path(client), class: 'btn btn-info' do
+            = fa_icon :edit
+            = t('buttons.edit')
+          = link_to client, :method => :delete,
+          :data => { :confirm => t('buttons.confirm.my_client') },
+          class: 'btn btn-danger' do
+            = fa_icon :times
+            = t('buttons.destroy')

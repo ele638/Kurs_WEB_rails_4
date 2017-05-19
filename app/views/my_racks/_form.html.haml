@@ -1,31 +1,40 @@
 = form_for @my_rack do |f|
-  - if @my_rack.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@my_rack.errors.count, "error")} prohibited this my_rack from being saved:"
-      %ul
-        - @my_rack.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :number
-    = f.number_field :number
-  .field
-    = f.label :my_room
-    = f.collection_select :my_room_id, MyRoom.all, :id, :name
-  .field
-    = f.label :places
-    = f.number_field :places
-  .field
-    = f.label :height
-    = f.text_field :height
-  .field
-    = f.label :width
-    = f.text_field :width
-  .field
-    = f.label :length
-    = f.text_field :length
-  .field
-    = f.label :max_weight
-    = f.text_field :max_weight
-  .actions
-    = f.submit 'Save'
+  = error_messages_for @my_rack
+  .row
+    .col-md-6
+      .form-group
+        = f.label :number
+        = f.number_field :number
+        = f.error_messages_for(:number)
+    .col-md-6
+      .form-group
+        = f.label :my_room_id
+        = f.collection_select :my_room_id, MyRoom.all, :id, :name
+        = f.error_messages_for(:my_room)
+    .col-md-6
+      .form-group
+        = f.label :places
+        = f.number_field :places
+        = f.error_messages_for(:places)
+    .col-md-6
+      .form-group
+        = f.label :height
+        = f.text_field :height
+        = f.error_messages_for(:height)
+    .col-md-6
+      .form-group
+        = f.label :width
+        = f.text_field :width
+        = f.error_messages_for(:width)
+    .col-md-6
+      .form-group
+        = f.label :length
+        = f.text_field :length
+        = f.error_messages_for(:length)
+    .col-md-6
+      .form-group
+        = f.label :max_weight
+        = f.text_field :max_weight
+        = f.error_messages_for(:max_weight)
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

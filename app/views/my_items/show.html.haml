@@ -1,33 +1,29 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = @my_item.my_rack.collection_select_name + ". " + @my_item.position.to_s
+  %li
+    = link_to 'Объекты', my_items_path
+  %li
+    Администрирование
 
-%p
-  %b Height:
-  = @my_item.height
-%p
-  %b Width:
-  = @my_item.width
-%p
-  %b Length:
-  = @my_item.length
-%p
-  %b Weight:
-  = @my_item.weight
-%p
-  %b Incoming date:
-  = @my_item.incoming_date
-%p
-  %b My client:
-  = @my_item.my_client.name
-%p
-  %b Issue date:
-  = @my_item.issue_date
-%p
-  %b My rack:
-  = @my_item.my_rack.collection_select_name
-%p
-  %b Position:
-  = @my_item.position
+%h1= 'Объект в комнате' + @my_item.my_rack.collection_select_name + ' на позиции ' + @my_item.position.to_s
 
-= link_to 'Edit', edit_my_item_path(@my_item)
-\|
-= link_to 'Back', my_items_path
+%dl
+  %dt= MyItem.human_attribute_name(:height)
+  %dd= @my_item.height
+  %dt= MyItem.human_attribute_name(:width)
+  %dd= @my_item.width
+  %dt= MyItem.human_attribute_name(:length)
+  %dd= @my_item.length
+  %dt= MyItem.human_attribute_name(:weight)
+  %dd= @my_item.weight
+  %dt= MyItem.human_attribute_name(:incoming_date)
+  %dd= lnil(@my_item.incoming_date)
+  %dt= MyItem.human_attribute_name(:my_client_id)
+  %dd= link_to @my_item.my_client.name, @my_item.my_client
+  %dt= MyItem.human_attribute_name(:issue_date)
+  %dd= lnil(@my_item.issue_date)
+  %dt= MyItem.human_attribute_name(:my_rack_id)
+  %dd= link_to @my_item.my_rack.collection_select_name, @my_item.my_rack
+  %dt= MyItem.human_attribute_name(:position)
+  %dd= @my_item.position

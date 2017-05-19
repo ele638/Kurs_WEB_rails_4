@@ -16,9 +16,17 @@ ru:
     confirm:
       user: Действительно удалить пользователя?
       role: Действительно удалить роль?
-    new: 
+      my_room: Действительно удалить комнату?
+      my_rack: Действительно удалить стелаж?
+      my_client: Действительно удалить клиента?
+      my_item: Действительно удалить объект?
+    new:
       user: Новый пользователь
       role: Новая роль
+      my_room: Новая комната
+      my_rack: Новый стелаж
+      my_client: Новый клиент
+      my_item: Новый объект
   headers:
     users:
       edit: Редактирование пользователя
@@ -28,6 +36,22 @@ ru:
       index: Список возможных ролей пользователей
       edit: Редактирование роли
       new: Новая роль
+    my_rooms:
+      edit: Редактирование комнаты
+      new: Новая комната
+      index: Список комнат
+    my_racks:
+      edit: Редактирование стелажа
+      new: Новый стелаж
+      index: Список стелажей
+    my_clients:
+      edit: Редактирование клиента
+      new: Новый клиент
+      index: Список клиентов
+    my_items:
+      edit: Редактирование объекта
+      new: Новый объект
+      index: Список объектов
   views:
     pagination:
       first: ⇤
@@ -38,6 +62,10 @@ ru:
   activerecord:
     models:
       user: Пользователь
+      my_room: Комната
+      my_rack: Стелаж
+      my_client: Клиент
+      my_item: Объект
     attributes:
       user:
         email: Пользовательское имя/электронная почта
@@ -53,4 +81,27 @@ ru:
         name: Обозначение
         info: Краткое название
         full_info: Описание
-          
+      my_room:
+        name: Наименование
+        volume: Объем
+      my_rack:
+        number: Номер по порядку
+        my_room_id: Комната
+        places: Количество мест
+        height: Высота ячейки
+        width: Ширина ячейки
+        length: Длина ячейки
+        max_weight: Максимальный вес
+      my_client:
+        name: ФИО
+        details: Банковские реквизиты
+      my_item:
+        height: Высота объекта
+        width: Ширина объекта
+        length: Длина объекта
+        weight: Вес объекта
+        incoming_date: Дата поступления
+        my_client_id: Клиент
+        issue_date: Дата выгрузки
+        my_rack_id: Стелаж
+        position: Позиция

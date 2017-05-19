@@ -33,11 +33,13 @@ ActiveRecord::Schema.define(version: 20170502152223) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "my_clients", force: :cascade do |t|
-    t.string   "name"
-    t.binary   "details"
+    t.string   "name",       null: false
+    t.string   "details",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "my_clients", ["name"], name: "index_my_clients_on_name", unique: true, using: :btree
 
   create_table "my_items", force: :cascade do |t|
     t.float    "height"
@@ -54,28 +56,32 @@ ActiveRecord::Schema.define(version: 20170502152223) do
   end
 
   add_index "my_items", ["my_client_id"], name: "index_my_items_on_my_client_id", using: :btree
+  add_index "my_items", ["my_rack_id", "position"], name: "index_my_items_on_my_rack_id_and_position", unique: true, using: :btree
   add_index "my_items", ["my_rack_id"], name: "index_my_items_on_my_rack_id", using: :btree
 
   create_table "my_racks", force: :cascade do |t|
-    t.integer  "number"
-    t.integer  "my_room_id"
-    t.integer  "places"
-    t.float    "height"
-    t.float    "width"
-    t.float    "length"
-    t.float    "max_weight"
+    t.integer  "number",     null: false
+    t.integer  "my_room_id", null: false
+    t.integer  "places",     null: false
+    t.float    "height",     null: false
+    t.float    "width",      null: false
+    t.float    "length",     null: false
+    t.float    "max_weight", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "my_racks", ["my_room_id", "number"], name: "index_my_racks_on_my_room_id_and_number", unique: true, using: :btree
   add_index "my_racks", ["my_room_id"], name: "index_my_racks_on_my_room_id", using: :btree
 
   create_table "my_rooms", force: :cascade do |t|
-    t.string   "name"
-    t.float    "volume"
+    t.string   "name",       null: false
+    t.float    "volume",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "my_rooms", ["name"], name: "index_my_rooms_on_name", unique: true, using: :btree
 
   create_table "role_users", force: :cascade do |t|
     t.integer  "role_id",    null: false

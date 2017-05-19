@@ -1,7 +1,12 @@
-%h1 Editing my_rack
+=breadcrumb_tag do
+  %li.active
+    = link_to 'Стелажи', my_racks_path
+  %li
+    = link_to(@my_rack.collection_select_name, @my_rack)
+  %li
+    Администрирование
+
+.page-header
+  %h1= t('headers.my_racks.edit')
 
 = render 'form'
-
-= link_to 'Show', @my_rack
-\|
-= link_to 'Back', my_racks_path

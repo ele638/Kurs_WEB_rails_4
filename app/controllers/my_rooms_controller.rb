@@ -28,7 +28,7 @@ class MyRoomsController < ApplicationController
 
     respond_to do |format|
       if @my_room.save
-        format.html { redirect_to @my_room, notice: 'My room was successfully created.' }
+        format.html { redirect_to @my_room, notice: 'Комната успешно создана.' }
         format.json { render :show, status: :created, location: @my_room }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MyRoomsController < ApplicationController
   def update
     respond_to do |format|
       if @my_room.update(my_room_params)
-        format.html { redirect_to @my_room, notice: 'My room was successfully updated.' }
+        format.html { redirect_to @my_room, notice: 'Комната успешно обновлена.' }
         format.json { render :show, status: :ok, location: @my_room }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MyRoomsController < ApplicationController
   def destroy
     @my_room.destroy
     respond_to do |format|
-      format.html { redirect_to my_rooms_url, notice: 'My room was successfully destroyed.' }
+      format.html { redirect_to my_rooms_url, notice: 'Комната успешно удалена.' }
       format.json { head :no_content }
     end
   end

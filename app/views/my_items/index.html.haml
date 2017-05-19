@@ -1,37 +1,49 @@
-%h1 Listing my_items
+-#
+  Эта страница не адаптивна! Так как сделать подобные сраницы адаптивными -
+  это отдельное задание!
+=breadcrumb_tag do
+  %li.active
+    Объекты
+  %li
+    Просмотр
 
-%table
+.page-header
+  %h1= t('headers.my_items.index')
+
+%table.table.table-hover.table-striped
+  %caption
+    = link_to new_my_item_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.my_item')
   %thead
     %tr
-      %th Height
-      %th Width
-      %th Length
-      %th Weight
-      %th Incoming date
-      %th My client
-      %th Issue date
-      %th My rack
-      %th Position
+      %th= MyItem.human_attribute_name(:height)
+      %th= MyItem.human_attribute_name(:width)
+      %th= MyItem.human_attribute_name(:length)
+      %th= MyItem.human_attribute_name(:weight)
+      %th= MyItem.human_attribute_name(:my_client_id)
+      %th= MyItem.human_attribute_name(:issue_date)
+      %th= MyItem.human_attribute_name(:my_rack_id)
+      %th= MyItem.human_attribute_name(:position)
       %th
-      %th
-      %th
-
   %tbody
-    - @my_items.each do |my_item|
+    - @my_items.each do |item|
       %tr
-        %td= my_item.height
-        %td= my_item.width
-        %td= my_item.length
-        %td= my_item.weight
-        %td= my_item.incoming_date
-        %td= my_item.my_client.name
-        %td= my_item.issue_date
-        %td= my_item.my_rack.collection_select_name
-        %td= my_item.position
-        %td= link_to 'Show', my_item
-        %td= link_to 'Edit', edit_my_item_path(my_item)
-        %td= link_to 'Destroy', my_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New My item', new_my_item_path
+        %td.center= item.height
+        %td.center= item.width
+        %td.center= item.length
+        %td.center= item.weight
+        %td.center= item.incoming_date
+        %td.center= link_to item.my_client.name, item.my_client
+        %td.center= item.issue_date
+        %td.center= link_to item.my_rack.collection_select_name, item.my_rack
+        %td.center= item.position
+        %td.right
+          = link_to edit_my_item_path(item), class: 'btn btn-info' do
+            = fa_icon :edit
+            = t('buttons.edit')
+          = link_to item, :method => :delete,
+          :data => { :confirm => t('buttons.confirm.my_item') },
+          class: 'btn btn-danger' do
+            = fa_icon :times
+            = t('buttons.destroy')

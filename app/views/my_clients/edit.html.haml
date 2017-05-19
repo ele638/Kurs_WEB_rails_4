@@ -1,7 +1,12 @@
-%h1 Editing my_client
+=breadcrumb_tag do
+  %li.active
+    = link_to 'Клиенты', my_clients_path
+  %li
+    = link_to(@my_client.name, @my_client)
+  %li
+    Администрирование
+
+.page-header
+  %h1= t('headers.my_clients.edit')
 
 = render 'form'
-
-= link_to 'Show', @my_client
-\|
-= link_to 'Back', my_clients_path

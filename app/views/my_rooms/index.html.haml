@@ -1,23 +1,36 @@
-%h1 Listing my_rooms
+-#
+  Эта страница не адаптивна! Так как сделать подобные сраницы адаптивными -
+  это отдельное задание!
+=breadcrumb_tag do
+  %li.active
+    Комнаты
+  %li
+    Просмотр
 
-%table
+.page-header
+  %h1= t('headers.my_rooms.index')
+
+%table.table.table-hover.table-striped
+  %caption
+    = link_to new_my_room_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.my_room')
   %thead
     %tr
-      %th Name
-      %th Volume
+      %th= MyRoom.human_attribute_name(:name)
+      %th= MyRoom.human_attribute_name(:volume)
       %th
-      %th
-      %th
-
   %tbody
-    - @my_rooms.each do |my_room|
+    - @my_rooms.each do |room|
       %tr
-        %td= my_room.name
-        %td= my_room.volume
-        %td= link_to 'Show', my_room
-        %td= link_to 'Edit', edit_my_room_path(my_room)
-        %td= link_to 'Destroy', my_room, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New My room', new_my_room_path
+        %td.center= room.name
+        %td.center= room.volume
+        %td.right
+          = link_to edit_my_room_path(room), class: 'btn btn-info' do
+            = fa_icon :edit
+            = t('buttons.edit')
+          = link_to room, :method => :delete,
+          :data => { :confirm => t('buttons.confirm.my_room') },
+          class: 'btn btn-danger' do
+            = fa_icon :times
+            = t('buttons.destroy')

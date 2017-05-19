@@ -1,5 +1,13 @@
-%h1 New my_item
+- if @current_user.present?
+  =breadcrumb_tag do
+    %li.active
+      = t('headers.my_items.new')
+    %li
+      = link_to 'Объекты', my_items_path
+    %li
+      Администрирование
+
+.page-header
+  %h1= t('headers.my_items.new')
 
 = render 'form'
-
-= link_to 'Back', my_items_path

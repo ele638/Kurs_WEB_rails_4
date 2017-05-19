@@ -1,7 +1,12 @@
-%h1 Editing my_item
+=breadcrumb_tag do
+  %li.active
+    = link_to 'Объекты', my_items_path
+  %li
+    = link_to('Позиция '+@my_item.position.to_s, @my_item)
+  %li
+    Администрирование
+
+.page-header
+  %h1= t('headers.my_clients.edit')
 
 = render 'form'
-
-= link_to 'Show', @my_item
-\|
-= link_to 'Back', my_items_path

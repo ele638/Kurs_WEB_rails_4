@@ -1,16 +1,15 @@
 = form_for @my_client do |f|
-  - if @my_client.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@my_client.errors.count, "error")} prohibited this my_client from being saved:"
-      %ul
-        - @my_client.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :details
-    = f.text_field :details
-  .actions
-    = f.submit 'Save'
+  = error_messages_for @my_client
+  .row
+    .col-md-6
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+        = f.error_messages_for(:name)
+    .col-md-6
+      .form-group
+        = f.label :details
+        = f.text_field :details, class: 'form-control'
+        = f.error_messages_for(:details)
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

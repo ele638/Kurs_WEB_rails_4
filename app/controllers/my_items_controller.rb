@@ -28,7 +28,7 @@ class MyItemsController < ApplicationController
 
     respond_to do |format|
       if @my_item.save
-        format.html { redirect_to @my_item, notice: 'My item was successfully created.' }
+        format.html { redirect_to @my_item, notice: 'Объект успешно создан.' }
         format.json { render :show, status: :created, location: @my_item }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MyItemsController < ApplicationController
   def update
     respond_to do |format|
       if @my_item.update(my_item_params)
-        format.html { redirect_to @my_item, notice: 'My item was successfully updated.' }
+        format.html { redirect_to @my_item, notice: 'Объект успешно обновлен.' }
         format.json { render :show, status: :ok, location: @my_item }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MyItemsController < ApplicationController
   def destroy
     @my_item.destroy
     respond_to do |format|
-      format.html { redirect_to my_items_url, notice: 'My item was successfully destroyed.' }
+      format.html { redirect_to my_items_url, notice: 'Объект успешно удален.' }
       format.json { head :no_content }
     end
   end

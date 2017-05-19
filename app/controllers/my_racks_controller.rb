@@ -28,7 +28,7 @@ class MyRacksController < ApplicationController
 
     respond_to do |format|
       if @my_rack.save
-        format.html { redirect_to @my_rack, notice: 'My rack was successfully created.' }
+        format.html { redirect_to @my_rack, notice: 'Стелаж успешно создан.' }
         format.json { render :show, status: :created, location: @my_rack }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MyRacksController < ApplicationController
   def update
     respond_to do |format|
       if @my_rack.update(my_rack_params)
-        format.html { redirect_to @my_rack, notice: 'My rack was successfully updated.' }
+        format.html { redirect_to @my_rack, notice: 'Стелаж успешно обновлен.' }
         format.json { render :show, status: :ok, location: @my_rack }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MyRacksController < ApplicationController
   def destroy
     @my_rack.destroy
     respond_to do |format|
-      format.html { redirect_to my_racks_url, notice: 'My rack was successfully destroyed.' }
+      format.html { redirect_to my_racks_url, notice: 'Стелаж успешно удален.' }
       format.json { head :no_content }
     end
   end

@@ -1,12 +1,13 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = @my_room.name
+  %li
+    = link_to 'Комнаты', my_rooms_path
+  %li
+    Администрирование
 
-%p
-  %b Name:
-  = @my_room.name
-%p
-  %b Volume:
-  = @my_room.volume
+%h1= @my_room.name
 
-= link_to 'Edit', edit_my_room_path(@my_room)
-\|
-= link_to 'Back', my_rooms_path
+%dl
+  %dt= MyRoom.human_attribute_name(:volume)
+  %dd= @my_room.volume
