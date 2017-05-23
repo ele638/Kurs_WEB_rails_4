@@ -25,7 +25,6 @@ class MyClientsController < ApplicationController
   # POST /my_clients.json
   def create
     @my_client = MyClient.new(my_client_params)
-
     respond_to do |format|
       if @my_client.save
         format.html { redirect_to @my_client, notice: 'Клиент успешно создан.' }
@@ -65,6 +64,7 @@ class MyClientsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_my_client
       @my_client = MyClient.find(params[:id])
+      @my_client.my_items = MyItem.where(id: params[:my_items_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

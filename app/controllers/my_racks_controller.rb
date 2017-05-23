@@ -15,17 +15,20 @@ class MyRacksController < ApplicationController
   # GET /my_racks/new
   def new
     @my_rack = MyRack.new
+    @my_rack.build_my_room
   end
 
   # GET /my_racks/1/edit
   def edit
+    @my_rack.my_room_id = @my_rack.my_room.id # не спрашивайте зачем, я столько времени убил из-за этой х!@#$ни.
   end
 
   # POST /my_racks
   # POST /my_racks.json
   def create
     @my_rack = MyRack.new(my_rack_params)
-
+    @my_rack.my_room = @my_rack.FOC_room(my_rack_params[:my_room_attributes])
+    @my_rack.my_room_id = @my_rack.my_room.id # не спрашивайте зачем, я столько времени убил из-за этой х!@#$ни.
     respond_to do |format|
       if @my_rack.save
         format.html { redirect_to @my_rack, notice: 'Стелаж успешно создан.' }
@@ -54,7 +57,9 @@ class MyRacksController < ApplicationController
   # DELETE /my_racks/1
   # DELETE /my_racks/1.json
   def destroy
+    bak_my_room_id = @my_rack.my_room_id
     @my_rack.destroy
+    @my_rack.DON_room(bak_my_room_id)
     respond_to do |format|
       format.html { redirect_to my_racks_url, notice: 'Стелаж успешно удален.' }
       format.json { head :no_content }
@@ -69,6 +74,7 @@ class MyRacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def my_rack_params
-      params.require(:my_rack).permit(:number, :my_room_id, :places, :height, :width, :length, :max_weight)
+      params.require(:my_rack).permit(:number, :my_room_id, :places, :height, :width, :length, :max_weight,
+      my_room_attributes: [:name, :volume])
     end
 end

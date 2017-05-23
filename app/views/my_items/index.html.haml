@@ -10,6 +10,8 @@
 .page-header
   %h1= t('headers.my_items.index')
 
+= render 'search'
+
 %table.table.table-hover.table-striped
   %caption
     = link_to new_my_item_path, class: 'btn btn-success' do
@@ -21,6 +23,7 @@
       %th= MyItem.human_attribute_name(:width)
       %th= MyItem.human_attribute_name(:length)
       %th= MyItem.human_attribute_name(:weight)
+      %th= MyItem.human_attribute_name(:incoming_date)
       %th= MyItem.human_attribute_name(:my_client_id)
       %th= MyItem.human_attribute_name(:issue_date)
       %th= MyItem.human_attribute_name(:my_rack_id)

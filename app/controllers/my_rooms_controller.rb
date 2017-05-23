@@ -25,7 +25,6 @@ class MyRoomsController < ApplicationController
   # POST /my_rooms.json
   def create
     @my_room = MyRoom.new(my_room_params)
-
     respond_to do |format|
       if @my_room.save
         format.html { redirect_to @my_room, notice: 'Комната успешно создана.' }

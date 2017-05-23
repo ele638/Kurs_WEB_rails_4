@@ -32,11 +32,6 @@
         = f.error_messages_for(:incoming_date)
     .col-md-6
       .form-group
-        = f.label :my_client_id
-        = f.collection_select :my_client_id, MyClient.all, :id, :name
-        = f.error_messages_for(:my_client)
-    .col-md-6
-      .form-group
         = f.label :issue_date
         .input-group.date.datepicker
           = f.text_field(:issue_date, value: lnil(f.object.issue_date),
@@ -54,7 +49,20 @@
         = f.label :position
         = f.number_field :position
         = f.error_messages_for(:position)
-
-
+    = f.fields_for :my_client do |ff|
+      .col-md-6
+        .form-group
+          = ff.label :name
+          = ff.text_field :name
+          = ff.error_messages_for(:name)
+      .col-md-6
+        .form-group
+          = ff.label :details
+          = ff.text_field :details
+          = ff.error_messages_for(:details)
+      = ff.hidden_field :id
+    .col-md-6
+      .form-group
+        = f.hidden_field :my_client_id
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
