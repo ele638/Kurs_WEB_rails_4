@@ -64,7 +64,6 @@ class MyClientsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_my_client
       @my_client = MyClient.find(params[:id])
-      @my_client.my_items = MyItem.where(id: params[:my_items_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

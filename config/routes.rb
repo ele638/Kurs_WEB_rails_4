@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
-  resources :my_items
-  resources :my_clients
-  resources :my_racks
-  resources :my_rooms
+
+  resources :my_clients do |client|
+    resources :my_items
+  end
+  resources :my_rooms do |room|
+    resources :my_racks
+  end
   resources :role_users
   resources :roles
   resources :password_resets
 
+  get 'search' => 'search#search'
   get 'welcome/index', as: :welcome
   get 'welcome/insufficient_privileges', as: :ip
   get 'login' => 'welcome#new', :as => :login

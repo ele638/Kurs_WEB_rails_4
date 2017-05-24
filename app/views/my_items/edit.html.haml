@@ -1,8 +1,8 @@
 =breadcrumb_tag do
   %li.active
-    = link_to 'Объекты', my_items_path
+    = link_to @my_client.name, @my_client
   %li
-    = link_to('Позиция '+@my_item.position.to_s, @my_item)
+    = link_to('Позиция '+ @my_item.position.to_s, my_client_my_item_path(@my_client, @my_item))
   %li
     Администрирование
 

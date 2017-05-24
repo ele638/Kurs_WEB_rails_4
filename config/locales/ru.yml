@@ -52,6 +52,8 @@ ru:
       edit: Редактирование объекта
       new: Новый объект
       index: Список объектов
+    search:
+      title: Поиск
   views:
     pagination:
       first: ⇤

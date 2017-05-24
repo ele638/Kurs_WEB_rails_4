@@ -1,16 +1,14 @@
 =breadcrumb_tag do
   %li.active
-    = @my_rack.number
+    = link_to 'Комната ' + @my_room.name, @my_room
   %li
-    = link_to 'Стелажи', my_racks_path
+    = @my_rack.number
   %li
     Администрирование
 
 %h1= 'Стелаж ' + @my_rack.number.to_s
 
 %dl
-  %dt= MyRack.human_attribute_name(:my_room_id)
-  %dd= link_to @my_rack.my_room.name, @my_rack.my_room
   %dt= MyRack.human_attribute_name(:places)
   %dd= @my_rack.places
   %dt= MyRack.human_attribute_name(:height)

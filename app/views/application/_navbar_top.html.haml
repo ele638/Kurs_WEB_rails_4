@@ -13,6 +13,12 @@
         %span.icon-bar
     %ul.nav.navbar-nav.navbar-right.collapse.navbar-collapse#bs-example-navbar-collapse-1
       %li
+        = link_to 'Клиенты', my_clients_path
+      %li
+        = link_to 'Комнаты', my_rooms_path
+      %li
+        = link_to 'Поиск', search_path
+      %li
         = link_to login_path do
           = @current_user.blank? ? 'войти' : @current_user.email
       %li

@@ -9,24 +9,7 @@ class MyItem < ActiveRecord::Base
   validates :position, presence: true, numericality: { greater_than: 0 }
   validates :my_client_id, presence: true
   validates :my_rack_id, presence: true
-  accepts_nested_attributes_for :my_client, :allow_destroy => true
-
-  def FOC_client (params) # Find Or Create
-    if out_client = MyClient.find_by_name(params[:name])
-      if !params[:details].blank?
-        out_client.update(details: params[:details])
-      end
-    else
-      out_client = MyClient.create(params)
-    end
-    out_client
-  end
-
-  def DON_client (client_id) # Delete Or not
-    if MyItem.where(my_client_id: client_id).size == 0
-      MyClient.find(client_id).destroy
-    end
-  end
+  validates_uniqueness_of :my_rack_id, :scope => :position
 
   def self.search(search)
     results = MyItem.all

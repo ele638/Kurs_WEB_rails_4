@@ -1,9 +1,9 @@
 - if @current_user.present?
   =breadcrumb_tag do
     %li.active
-      = t('headers.my_items.new')
+      = link_to @my_client.name, @my_client
     %li
-      = link_to 'Объекты', my_items_path
+      = t('headers.my_items.new')
     %li
       Администрирование
 

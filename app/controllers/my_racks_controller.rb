@@ -4,34 +4,37 @@ class MyRacksController < ApplicationController
   # GET /my_racks
   # GET /my_racks.json
   def index
-    @my_racks = MyRack.all
+    @my_room = MyRoom.find(params[:my_room_id])
+    @my_racks = @my_room.my_racks
   end
 
   # GET /my_racks/1
   # GET /my_racks/1.json
   def show
+    @my_room = MyRoom.find(params[:my_room_id])
+    @my_racks = @my_room.my_racks.find(params[:id])
   end
 
   # GET /my_racks/new
   def new
-    @my_rack = MyRack.new
-    @my_rack.build_my_room
+    @my_room = MyRoom.find(params[:my_room_id])
+    @my_rack = @my_room.my_racks.build
   end
 
   # GET /my_racks/1/edit
   def edit
-    @my_rack.my_room_id = @my_rack.my_room.id # не спрашивайте зачем, я столько времени убил из-за этой х!@#$ни.
+    @my_room = MyRoom.find(params[:my_room_id])
+    @my_racks = @my_room.my_racks.find(params[:id])
   end
 
   # POST /my_racks
   # POST /my_racks.json
   def create
-    @my_rack = MyRack.new(my_rack_params)
-    @my_rack.my_room = @my_rack.FOC_room(my_rack_params[:my_room_attributes])
-    @my_rack.my_room_id = @my_rack.my_room.id # не спрашивайте зачем, я столько времени убил из-за этой х!@#$ни.
+    @my_room = MyRoom.find(params[:my_room_id])
+    @my_rack = @my_room.my_racks.new(my_rack_params)
     respond_to do |format|
       if @my_rack.save
-        format.html { redirect_to @my_rack, notice: 'Стелаж успешно создан.' }
+        format.html { redirect_to my_room_my_rack_path(@my_room, @my_rack), notice: 'Стелаж успешно создан.' }
         format.json { render :show, status: :created, location: @my_rack }
       else
         format.html { render :new }
@@ -43,9 +46,10 @@ class MyRacksController < ApplicationController
   # PATCH/PUT /my_racks/1
   # PATCH/PUT /my_racks/1.json
   def update
+    @my_room = MyRoom.find(params[:my_room_id])
     respond_to do |format|
       if @my_rack.update(my_rack_params)
-        format.html { redirect_to @my_rack, notice: 'Стелаж успешно обновлен.' }
+        format.html { redirect_to my_room_my_rack_path(@my_room, @my_rack), notice: 'Стелаж успешно обновлен.' }
         format.json { render :show, status: :ok, location: @my_rack }
       else
         format.html { render :edit }
@@ -57,11 +61,10 @@ class MyRacksController < ApplicationController
   # DELETE /my_racks/1
   # DELETE /my_racks/1.json
   def destroy
-    bak_my_room_id = @my_rack.my_room_id
+    @my_room = MyRoom.find(params[:my_room_id])
     @my_rack.destroy
-    @my_rack.DON_room(bak_my_room_id)
     respond_to do |format|
-      format.html { redirect_to my_racks_url, notice: 'Стелаж успешно удален.' }
+      format.html { redirect_to @my_room, notice: 'Стелаж успешно удален.' }
       format.json { head :no_content }
     end
   end
@@ -74,7 +77,6 @@ class MyRacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def my_rack_params
-      params.require(:my_rack).permit(:number, :my_room_id, :places, :height, :width, :length, :max_weight,
-      my_room_attributes: [:name, :volume])
+      params.require(:my_rack).permit(:number, :my_room_id, :places, :height, :width, :length, :max_weight)
     end
 end

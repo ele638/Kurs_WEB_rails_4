@@ -1,8 +1,8 @@
 =breadcrumb_tag do
   %li.active
-    = @my_item.my_rack.collection_select_name + ". " + @my_item.position.to_s
+    = link_to @my_client.name, @my_client
   %li
-    = link_to 'Объекты', my_items_path
+    = @my_item.my_rack.collection_select_name + ". " + @my_item.position.to_s
   %li
     Администрирование
 
@@ -19,11 +19,9 @@
   %dd= @my_item.weight
   %dt= MyItem.human_attribute_name(:incoming_date)
   %dd= lnil(@my_item.incoming_date)
-  %dt= MyItem.human_attribute_name(:my_client_id)
-  %dd= link_to @my_item.my_client.name, @my_item.my_client
   %dt= MyItem.human_attribute_name(:issue_date)
   %dd= lnil(@my_item.issue_date)
   %dt= MyItem.human_attribute_name(:my_rack_id)
-  %dd= link_to @my_item.my_rack.collection_select_name, @my_item.my_rack
+  %dd= link_to @my_item.my_rack.collection_select_name, my_room_my_rack_path(@my_item.my_rack.my_room, @my_item.my_rack)
   %dt= MyItem.human_attribute_name(:position)
   %dd= @my_item.position

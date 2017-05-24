@@ -1,9 +1,9 @@
 - if @current_user.present?
   =breadcrumb_tag do
     %li.active
-      = t('headers.my_racks.new')
+      = link_to 'Комната '+@my_room.name, @my_room
     %li
-      = link_to 'Стелажи', my_racks_path
+      = t('headers.my_racks.new')
     %li
       Администрирование
 

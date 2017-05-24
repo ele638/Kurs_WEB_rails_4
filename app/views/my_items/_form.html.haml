@@ -1,25 +1,25 @@
-= form_for @my_item do |f|
+= form_for [@my_client, @my_item] do |f|
   = error_messages_for @my_item
   .row
     .col-md-6
       .form-group
         = f.label :height
-        = f.text_field :height
+        = f.text_field :height, class: 'form-control'
         = f.error_messages_for(:height)
     .col-md-6
       .form-group
         = f.label :width
-        = f.text_field :width
+        = f.text_field :width, class: 'form-control'
         = f.error_messages_for(:width)
     .col-md-6
       .form-group
         = f.label :length
-        = f.text_field :length
+        = f.text_field :length, class: 'form-control'
         = f.error_messages_for(:length)
     .col-md-6
       .form-group
         = f.label :weight
-        = f.text_field :weight
+        = f.text_field :weight, class: 'form-control'
         = f.error_messages_for(:weight)
     .col-md-6
       .form-group
@@ -42,25 +42,13 @@
     .col-md-6
       .form-group
         = f.label :my_rack_id
-        = f.collection_select :my_rack_id, MyRack.all, :id, :collection_select_name
+        = f.collection_select :my_rack_id, MyRack.all, :id, :collection_select_name, class: 'form-control'
         = f.error_messages_for(:my_rack)
     .col-md-6
       .form-group
         = f.label :position
-        = f.number_field :position
+        = f.number_field :position, class: 'form-control'
         = f.error_messages_for(:position)
-    = f.fields_for :my_client do |ff|
-      .col-md-6
-        .form-group
-          = ff.label :name
-          = ff.text_field :name
-          = ff.error_messages_for(:name)
-      .col-md-6
-        .form-group
-          = ff.label :details
-          = ff.text_field :details
-          = ff.error_messages_for(:details)
-      = ff.hidden_field :id
     .col-md-6
       .form-group
         = f.hidden_field :my_client_id

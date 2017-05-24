@@ -1,4 +1,4 @@
-= form_for @my_rack do |f|
+= form_for [@my_room, @my_rack] do |f|
   = error_messages_for @my_rack
   .row
     .col-md-6
@@ -31,19 +31,6 @@
         = f.label :max_weight
         = f.text_field :max_weight
         = f.error_messages_for(:max_weight)
-    = f.fields_for :my_room do |ff|
-      .col-md-6
-        .form-group
-          = ff.label :name
-          = ff.text_field :name
-          = ff.error_messages_for(:name)
-      .col-md-6
-        .form-group
-          = ff.label :volume
-          = ff.number_field :volume
-          = ff.error_messages_for(:volume)
-      .col-md-6
-        .form-group
-          = f.hidden_field :my_room_id
+    = f.hidden_field :my_room_id
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
