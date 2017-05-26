@@ -1,5 +1,6 @@
 class MyItemsController < ApplicationController
   before_action :set_my_item, only: [:show, :edit, :update, :destroy]
+  before_action :check_app_auth, except: [:index, :show, :set_my_client]
 
   # GET /my_items
   # GET /my_items.json

@@ -4,17 +4,18 @@
   %li
     = @my_room.name
   %li
-    Администрирование
+    = @current_user.role_users.first.try(:is_admin?)? 'Администрирование' : 'Просмотр'
 
 %h1= 'Комната ' + @my_room.name
 
 %dl
   %dt= MyRoom.human_attribute_name(:volume)
   %dd= @my_room.volume
-%caption
-  = link_to new_my_room_my_rack_path(@my_room), class: 'btn btn-success' do
-    = fa_icon :plus
-    = t('buttons.new.my_rack')
+= if @current_user.role_users.first.try(:is_admin?)
+  %caption
+    = link_to new_my_room_my_rack_path(@my_room), class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.my_rack')
 .table-responsive
   %table.table.table-hover.table-striped
     %thead
@@ -39,11 +40,12 @@
             = link_to my_room_my_rack_path(@my_room, rack), class: 'btn btn-success' do
               = fa_icon :eye
               = t('buttons.show')
-            = link_to edit_my_room_my_rack_path(@my_room, rack), class: 'btn btn-info' do
-              = fa_icon :edit
-              = t('buttons.edit')
-            = link_to [@my_room, rack], :method => :delete,
-            :data => { :confirm => t('buttons.confirm.my_rack') },
-            class: 'btn btn-danger' do
-              = fa_icon :times
-              = t('buttons.destroy')
+            = if @current_user.role_users.first.try(:is_admin?)
+              = link_to edit_my_room_my_rack_path(@my_room, rack), class: 'btn btn-info' do
+                = fa_icon :edit
+                = t('buttons.edit')
+              = link_to [@my_room, rack], :method => :delete,
+              :data => { :confirm => t('buttons.confirm.my_rack') },
+              class: 'btn btn-danger' do
+                = fa_icon :times
+                = t('buttons.destroy')

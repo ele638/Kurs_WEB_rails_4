@@ -4,7 +4,7 @@
   %li
     = @my_client.name
   %li
-    Администрирование
+  = @current_user.role_users.first.try(:is_admin?)? 'Администрирование' : 'Просмотр'
 
 %h1= 'Клиент ' + @my_client.name
 
@@ -12,10 +12,11 @@
   %dt= MyClient.human_attribute_name(:details)
   %dd= @my_client.details
 
-%caption
-  = link_to new_my_client_my_item_path(@my_client), class: 'btn btn-success' do
-    = fa_icon :plus
-    = t('buttons.new.my_item')
+= if @current_user.role_users.first.try(:is_admin?)
+  %caption
+    = link_to new_my_client_my_item_path(@my_client), class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.my_item')
 .table-responsive
   %table.table.table-hover.table-striped
     %thead
@@ -44,11 +45,12 @@
             = link_to my_client_my_item_path(@my_client, item), class: 'btn btn-success' do
               = fa_icon :eye
               = t('buttons.show')
-            = link_to edit_my_client_my_item_path(@my_client, item), class: 'btn btn-info' do
-              = fa_icon :edit
-              = t('buttons.edit')
-            = link_to [@my_client, item], :method => :delete,
-            :data => { :confirm => t('buttons.confirm.my_item') },
-            class: 'btn btn-danger' do
-              = fa_icon :times
-              = t('buttons.destroy')
+            = if @current_user.role_users.first.try(:is_admin?)
+              = link_to edit_my_client_my_item_path(@my_client, item), class: 'btn btn-info' do
+                = fa_icon :edit
+                = t('buttons.edit')
+              = link_to [@my_client, item], :method => :delete,
+              :data => { :confirm => t('buttons.confirm.my_item') },
+              class: 'btn btn-danger' do
+                = fa_icon :times
+                = t('buttons.destroy')

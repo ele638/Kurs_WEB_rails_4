@@ -9,10 +9,11 @@
 
 .page-header
   %h1= t('headers.my_rooms.index')
-%caption
-  = link_to new_my_room_path, class: 'btn btn-success' do
-    = fa_icon :plus
-    = t('buttons.new.my_room')
+= if @current_user.role_users.first.try(:is_admin?)
+  %caption
+    = link_to new_my_room_path, class: 'btn btn-success' do
+      = fa_icon :plus
+      = t('buttons.new.my_room')
 .table-responsive
   %table.table.table-hover.table-striped
     %thead
@@ -29,11 +30,12 @@
             = link_to my_room_path(room), class: 'btn btn-success' do
               = fa_icon :eye
               = t('buttons.show')
-            = link_to edit_my_room_path(room), class: 'btn btn-info' do
-              = fa_icon :edit
-              = t('buttons.edit')
-            = link_to room, :method => :delete,
-            :data => { :confirm => t('buttons.confirm.my_room') },
-            class: 'btn btn-danger' do
-              = fa_icon :times
-              = t('buttons.destroy')
+            = if @current_user.role_users.first.try(:is_admin?)
+              = link_to edit_my_room_path(room), class: 'btn btn-info' do
+                = fa_icon :edit
+                = t('buttons.edit')
+              = link_to room, :method => :delete,
+              :data => { :confirm => t('buttons.confirm.my_room') },
+              class: 'btn btn-danger' do
+                = fa_icon :times
+                = t('buttons.destroy')

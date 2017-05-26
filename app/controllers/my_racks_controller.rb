@@ -1,5 +1,6 @@
 class MyRacksController < ApplicationController
   before_action :set_my_rack, only: [:show, :edit, :update, :destroy]
+  before_action :check_app_auth, except: [:index, :show, :set_my_client]
 
   # GET /my_racks
   # GET /my_racks.json

@@ -1,5 +1,6 @@
 class MyRoomsController < ApplicationController
   before_action :set_my_room, only: [:show, :edit, :update, :destroy]
+  before_action :check_app_auth, except: [:index, :show, :set_my_client]
 
   # GET /my_rooms
   # GET /my_rooms.json
