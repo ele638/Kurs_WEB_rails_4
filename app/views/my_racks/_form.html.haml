@@ -4,32 +4,32 @@
     .col-md-6
       .form-group
         = f.label :number
-        = f.number_field :number
+        = f.number_field :number, class: 'form-control'
         = f.error_messages_for(:number)
     .col-md-6
       .form-group
         = f.label :places
-        = f.number_field :places
+        = f.number_field :places, class: 'form-control'
         = f.error_messages_for(:places)
     .col-md-6
       .form-group
         = f.label :height
-        = f.text_field :height
+        = f.text_field :height, class: 'form-control'
         = f.error_messages_for(:height)
     .col-md-6
       .form-group
         = f.label :width
-        = f.text_field :width
+        = f.text_field :width, class: 'form-control'
         = f.error_messages_for(:width)
     .col-md-6
       .form-group
         = f.label :length
-        = f.text_field :length
+        = f.text_field :length, class: 'form-control'
         = f.error_messages_for(:length)
     .col-md-6
       .form-group
         = f.label :max_weight
-        = f.text_field :max_weight
+        = f.text_field :max_weight, class: 'form-control'
         = f.error_messages_for(:max_weight)
     = f.hidden_field :my_room_id
   .form-actions

@@ -6,9 +6,9 @@ class CreateMyItems < ActiveRecord::Migration
       t.float :length
       t.float :weight
       t.date :incoming_date
-      t.references :my_client, index: true, foreign_key: true
+      t.references :my_client, index: true, foreign_key: true, null: false
       t.date :issue_date
-      t.references :my_rack, index: true, foreign_key: true
+      t.references :my_rack, index: true, foreign_key: true, null: false
       t.integer :position
 
       t.timestamps null: false

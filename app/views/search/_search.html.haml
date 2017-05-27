@@ -1,18 +1,18 @@
 = form_tag search_url, :method => 'get' do
   .row
-    .col-md-1
+    .col-md-3
       .form-group
         = label_tag "height", "Высота "
         = number_field_tag "height", params[:height], autocomplete: 'off', class: 'form-control'
-    .col-md-1
+    .col-md-3
       .form-group
         = label_tag "width", "Ширина "
         = number_field_tag "width", params[:width], autocomplete: 'off', class: 'form-control'
-    .col-md-1
+    .col-md-3
       .form-group
         = label_tag "length", "Длина "
         = number_field_tag "length", params[:length], autocomplete: 'off', class: 'form-control'
-    .col-md-1
+    .col-md-3
       .form-group
         = label_tag "weight", "Вес "
         = number_field_tag "weight", params[:weight], autocomplete: 'off', class: 'form-control'

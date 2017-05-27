@@ -41,16 +41,92 @@
         = f.error_messages_for(:issue_date)
     .col-md-6
       .form-group
-        = f.label :my_rack_id
-        = f.collection_select :my_rack_id, MyRack.all, :id, :collection_select_name, class: 'form-control'
-        = f.error_messages_for(:my_rack)
-    .col-md-6
-      .form-group
         = f.label :position
         = f.number_field :position, class: 'form-control'
         = f.error_messages_for(:position)
     .col-md-6
       .form-group
+        = f.label :my_rack_id
+        = f.collection_select :my_rack_id, MyRack.all, :id, :collection_select_name, {include_blank: true}, {class: 'form-control'}
+        = f.error_messages_for(:my_rack)
+    .col-md-6
+      .form-group
         = f.hidden_field :my_client_id
+  .row
+    #new_rack{style: "display: none"}
+      .col-md-12
+        %h3= t('headers.my_racks.new')
+        .form-group
+          = f.fields_for :my_rack do |ff|
+            .col-md-6
+              .form-group
+                = ff.label :number
+                = ff.number_field :number, class: 'form-control'
+                = ff.error_messages_for(:number)
+            .col-md-6
+              .form-group
+                = ff.label :places
+                = ff.number_field :places, class: 'form-control'
+                = ff.error_messages_for(:places)
+            .col-md-6
+              .form-group
+                = ff.label :height
+                = ff.text_field :height, class: 'form-control'
+                = ff.error_messages_for(:height)
+            .col-md-6
+              .form-group
+                = ff.label :width
+                = ff.text_field :width, class: 'form-control'
+                = ff.error_messages_for(:width)
+            .col-md-6
+              .form-group
+                = ff.label :length
+                = ff.text_field :length, class: 'form-control'
+                = ff.error_messages_for(:length)
+            .col-md-6
+              .form-group
+                = ff.label :max_weight
+                = ff.text_field :max_weight, class: 'form-control'
+                = ff.error_messages_for(:max_weight)
+            .col-md-6
+              .form-group
+                = ff.label :my_room_id
+                = ff.collection_select(:my_room_id, MyRoom.all, :id, :name, {include_blank: true}, {class: 'form-control'})
+                = ff.error_messages_for(:my_room_id)
+            #new_room{style: "display: none"}
+              .form-group
+                .col-md-12
+                  %h3= t('headers.my_rooms.new')
+                = ff.fields_for :my_room do |fff|
+                  .col-md-6
+                    .form-group
+                      = fff.label :name
+                      = fff.text_field :name, class: 'form-control'
+                      = fff.error_messages_for(:name)
+                  .col-md-6
+                    .form-group
+                      = fff.label :volume
+                      = fff.text_field :volume, class: 'form-control'
+                      = fff.error_messages_for(:volume)
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
+
+:javascript
+  $(document).ready( function() {
+    $('#my_item_my_rack_id').on('change', function() {
+      if (this.value)
+        $('#new_rack').slideUp();
+      else
+        $('#new_rack').slideDown();
+    });
+    $('#my_item_my_rack_attributes_my_room_id').on('change', function() {
+      if (this.value)
+        $('#new_room').slideUp();
+      else
+        $('#new_room').slideDown();
+    });
+    if (!$('#my_item_my_rack_attributes_my_room_id').value)
+      $('#new_room').slideDown();
+    if (!$('#my_item_my_rack_id').value)
+      $('#new_rack').slideDown();
+  } );

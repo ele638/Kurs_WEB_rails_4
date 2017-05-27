@@ -10,7 +10,8 @@ class MyItem < ActiveRecord::Base
   validates :my_client_id, presence: true
   validates :my_rack_id, presence: true
   validates_uniqueness_of :my_rack_id, :scope => :position
-
+  accepts_nested_attributes_for :my_rack
+  
   def self.search(search)
     results = MyItem.all
     if !search[:height].blank?

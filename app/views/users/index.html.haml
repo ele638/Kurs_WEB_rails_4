@@ -14,7 +14,7 @@
   %caption
     = link_to new_user_path, class: 'btn btn-success' do
       = fa_icon :plus
-      = t('buttons.new.user')      
+    uttons.new.user')      
   %thead
     %tr
       %th= User.human_attribute_name(:email)
@@ -23,14 +23,14 @@
   %tbody
     - @users.each do |user|
       %tr
-        %td.center= user.email
-        %td.center= lnil(user.birthday)
+        %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= user.email
+        %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= lnil(user.birthday)
         %td.right
           = link_to edit_user_path(user), class: 'btn btn-info' do
             = fa_icon :edit
-            = t('buttons.edit')
+          uttons.edit')
           = link_to user, :method => :delete, 
           :data => { :confirm => t('buttons.confirm.user') }, 
           class: 'btn btn-danger' do
             = fa_icon :times
-            = t('buttons.destroy')
+          uttons.destroy')

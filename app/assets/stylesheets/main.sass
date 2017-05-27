@@ -108,7 +108,7 @@ a
       vertical-align: middle !important
 .p50
   width: 50px
-      
+
 .easy-hidden
   display: none
 
@@ -185,9 +185,9 @@ a
     font-size: 80%
     display: inline-block
   &.badge-middle
-    min-width: 100px    
+    min-width: 100px
   &.badge-long
-    min-width: 130px    
+    min-width: 130px
 .notop
   border-top-style: none
 .nobottom
@@ -202,7 +202,7 @@ a
   text-align: center
   border-radius: 7px
   $x_sizes: (150 200 300 400 500 600)
-  @each $x_size in $x_sizes 
+  @each $x_size in $x_sizes
     &.x#{$x_size}
       width: #{$x_size}px
 .panel
@@ -242,7 +242,7 @@ a
   width: 100%
   text-align: center
 $paddings: (5 10 20 30 40 50)
-@each $padding  in $paddings 
+@each $padding  in $paddings
   .left#{$padding}
     padding-left: #{$padding}px
   .right#{$padding}
@@ -266,7 +266,51 @@ $paddings: (5 10 20 30 40 50)
     #sidebar-toggle
       left: 0
 $percents: (90 85 80 75 70 65 60 55 50 40 30 20 10 5)
-@each $percent in $percents 
+@each $percent in $percents
   .small#{$percent}
     font-size: #{$percent+'%'}
     padding: #{round($padding-base-vertical * $percent / 100)} #{round($padding-base-horizontal * $percent / 100)} #{round($padding-base-vertical * $percent / 100)} #{round($padding-base-horizontal * $percent / 100)}
+
+
+@media only screen and (max-width: 800px)
+  #no-more-tables table,
+  #no-more-tables thead,
+  #no-more-tables tbody,
+  #no-more-tables th,
+  #no-more-tables td,
+  #no-more-tables tr
+    display: block
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #no-more-tables thead tr
+    position: absolute
+    top: -9999px
+    left: -9999px
+
+  #no-more-tables tr
+    border: 1px solid #ccc
+
+  #no-more-tables td
+    /* Behave  like a "row" */
+    border: none
+    border-bottom: 1px solid #eee
+    position: relative
+    padding-left: 50%
+    white-space: normal
+    text-align:left
+
+  #no-more-tables td:before
+    /* Now like a table header */
+    position: absolute
+    /* Top/left values mimic padding */
+    top: 6px
+    left: 6px
+    width: 45%
+    height: 45%
+    padding-right: 10px
+    white-space: nowrap
+    text-align:left
+    font-weight: bold
+
+  /* Label the data */
+  #no-more-tables td:before
+    content: attr(data-title)

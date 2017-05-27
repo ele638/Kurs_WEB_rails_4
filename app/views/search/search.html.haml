@@ -21,23 +21,23 @@
     %tbody
       - @search.each do |item|
         %tr
-          %td.center= item.height
-          %td.center= item.width
-          %td.center= item.length
-          %td.center= item.weight
-          %td.center= item.incoming_date
-          %td.center= item.issue_date
-          %td.center= link_to item.my_rack.collection_select_name, my_room_my_rack_path(item.my_rack.my_room, item.my_rack)
-          %td.center= item.position
+          %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= item.height
+          %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= item.width
+          %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= item.length
+          %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= item.weight
+          %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= item.incoming_date
+          %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= item.issue_date
+          %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= link_to item.my_rack.collection_select_name, my_room_my_rack_path(item.my_rack.my_room, item.my_rack)
+          %td.center{data:{title:"#{MyClient.human_attribute_name(:name)}"}}= item.position
           %td.right
             = link_to my_client_my_item_path({id: item.id, my_client_id: item.my_client.id}), class: 'btn btn-success' do
               = fa_icon :eye
-              = t('buttons.show')
+            uttons.show')
             = link_to edit_my_client_my_item_path(item.my_client, item), class: 'btn btn-info' do
               = fa_icon :edit
-              = t('buttons.edit')
+            uttons.edit')
             = link_to [item.my_client, item], :method => :delete,
             :data => { :confirm => t('buttons.confirm.my_item') },
             class: 'btn btn-danger' do
               = fa_icon :times
-              = t('buttons.destroy')
+            uttons.destroy')

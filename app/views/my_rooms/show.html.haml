@@ -11,41 +11,37 @@
 %dl
   %dt= MyRoom.human_attribute_name(:volume)
   %dd= @my_room.volume
-= if @current_user.role_users.first.try(:is_admin?)
+- if @current_user.role_users.first.try(:is_admin?)
   %caption
     = link_to new_my_room_my_rack_path(@my_room), class: 'btn btn-success' do
       = fa_icon :plus
       = t('buttons.new.my_rack')
-.table-responsive
-  %table.table.table-hover.table-striped
-    %thead
+%table.table.table-hover.table-striped#no-more-tables
+  %thead
+    %tr
+      %th= MyRack.human_attribute_name(:number)
+      %th= MyRack.human_attribute_name(:places)
+      %th= MyRack.human_attribute_name(:height)
+      %th= MyRack.human_attribute_name(:width)
+      %th= MyRack.human_attribute_name(:length)
+      %th= MyRack.human_attribute_name(:max_weight)
+      %th
+  %tbody
+    - @my_room.my_racks.each do |rack|
       %tr
-        %th= MyRack.human_attribute_name(:number)
-        %th= MyRack.human_attribute_name(:places)
-        %th= MyRack.human_attribute_name(:height)
-        %th= MyRack.human_attribute_name(:width)
-        %th= MyRack.human_attribute_name(:length)
-        %th= MyRack.human_attribute_name(:max_weight)
-        %th
-    %tbody
-      - @my_room.my_racks.each do |rack|
-        %tr
-          %td.center= rack.number
-          %td.center= rack.places
-          %td.center= rack.height
-          %td.center= rack.width
-          %td.center= rack.length
-          %td.center= rack.max_weight
-          %td.right
-            = link_to my_room_my_rack_path(@my_room, rack), class: 'btn btn-success' do
-              = fa_icon :eye
-              = t('buttons.show')
-            = if @current_user.role_users.first.try(:is_admin?)
-              = link_to edit_my_room_my_rack_path(@my_room, rack), class: 'btn btn-info' do
-                = fa_icon :edit
-                = t('buttons.edit')
-              = link_to [@my_room, rack], :method => :delete,
-              :data => { :confirm => t('buttons.confirm.my_rack') },
-              class: 'btn btn-danger' do
-                = fa_icon :times
-                = t('buttons.destroy')
+        %td.center{data:{title:"#{MyRack.human_attribute_name(:number)}"}}= rack.number
+        %td.center{data:{title:"#{MyRack.human_attribute_name(:places)}"}}= rack.places
+        %td.center{data:{title:"#{MyRack.human_attribute_name(:height)}"}}= rack.height
+        %td.center{data:{title:"#{MyRack.human_attribute_name(:width)}"}}= rack.width
+        %td.center{data:{title:"#{MyRack.human_attribute_name(:length)}"}}= rack.length
+        %td.center{data:{title:"#{MyRack.human_attribute_name(:max_weight)}"}}= rack.max_weight
+        %td.right
+          = link_to my_room_my_rack_path(@my_room, rack), class: 'btn btn-success' do
+            = fa_icon :eye
+          - if @current_user.role_users.first.try(:is_admin?)
+            = link_to edit_my_room_my_rack_path(@my_room, rack), class: 'btn btn-info' do
+              = fa_icon :edit
+            = link_to [@my_room, rack], :method => :delete,
+            :data => { :confirm => t('buttons.confirm.my_rack') },
+            class: 'btn btn-danger' do
+              = fa_icon :times

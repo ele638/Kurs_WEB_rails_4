@@ -54,6 +54,7 @@ class MyClientsController < ApplicationController
   # DELETE /my_clients/1
   # DELETE /my_clients/1.json
   def destroy
+    @my_client.my_items.each{|x| x.destroy}
     @my_client.destroy
     respond_to do |format|
       format.html { redirect_to my_clients_url, notice: 'Клиент успешно удален.' }

@@ -12,45 +12,41 @@
   %dt= MyClient.human_attribute_name(:details)
   %dd= @my_client.details
 
-= if @current_user.role_users.first.try(:is_admin?)
+- if @current_user.role_users.first.try(:is_admin?)
   %caption
     = link_to new_my_client_my_item_path(@my_client), class: 'btn btn-success' do
       = fa_icon :plus
       = t('buttons.new.my_item')
-.table-responsive
-  %table.table.table-hover.table-striped
-    %thead
+%table.table.table-hover.table-striped#no-more-tables
+  %thead
+    %tr
+      %th= MyItem.human_attribute_name(:height)
+      %th= MyItem.human_attribute_name(:width)
+      %th= MyItem.human_attribute_name(:length)
+      %th= MyItem.human_attribute_name(:weight)
+      %th= MyItem.human_attribute_name(:incoming_date)
+      %th= MyItem.human_attribute_name(:issue_date)
+      %th= MyItem.human_attribute_name(:my_rack_id)
+      %th= MyItem.human_attribute_name(:position)
+      %th
+  %tbody
+    - @my_client.my_items.each do |item|
       %tr
-        %th= MyItem.human_attribute_name(:height)
-        %th= MyItem.human_attribute_name(:width)
-        %th= MyItem.human_attribute_name(:length)
-        %th= MyItem.human_attribute_name(:weight)
-        %th= MyItem.human_attribute_name(:incoming_date)
-        %th= MyItem.human_attribute_name(:issue_date)
-        %th= MyItem.human_attribute_name(:my_rack_id)
-        %th= MyItem.human_attribute_name(:position)
-        %th
-    %tbody
-      - @my_client.my_items.each do |item|
-        %tr
-          %td.center= item.height
-          %td.center= item.width
-          %td.center= item.length
-          %td.center= item.weight
-          %td.center= item.incoming_date
-          %td.center= item.issue_date
-          %td.center= item.my_rack.collection_select_name
-          %td.center= item.position
-          %td.right
-            = link_to my_client_my_item_path(@my_client, item), class: 'btn btn-success' do
-              = fa_icon :eye
-              = t('buttons.show')
-            = if @current_user.role_users.first.try(:is_admin?)
-              = link_to edit_my_client_my_item_path(@my_client, item), class: 'btn btn-info' do
-                = fa_icon :edit
-                = t('buttons.edit')
-              = link_to [@my_client, item], :method => :delete,
-              :data => { :confirm => t('buttons.confirm.my_item') },
-              class: 'btn btn-danger' do
-                = fa_icon :times
-                = t('buttons.destroy')
+        %td.center{data:{title:"#{MyItem.human_attribute_name(:height)}"}}= item.height
+        %td.center{data:{title:"#{MyItem.human_attribute_name(:width)}"}}= item.width
+        %td.center{data:{title:"#{MyItem.human_attribute_name(:length)}"}}= item.length
+        %td.center{data:{title:"#{MyItem.human_attribute_name(:weight)}"}}= item.weight
+        %td.center{data:{title:"#{MyItem.human_attribute_name(:incoming_date)}"}}= item.incoming_date
+        %td.center{data:{title:"#{MyItem.human_attribute_name(:issue_date)}"}}= item.issue_date
+        %td.center{data:{title:"#{MyItem.human_attribute_name(:my_rack_id)}"}}= item.my_rack.collection_select_name
+        %td.center{data:{title:"#{MyItem.human_attribute_name(:position)}"}}= item.position
+        %td.right
+          = link_to my_client_my_item_path(@my_client, item), class: 'btn btn-success' do
+            = fa_icon :eye
+          - if @current_user.role_users.first.try(:is_admin?)
+            = link_to edit_my_client_my_item_path(@my_client, item), class: 'btn btn-info' do
+              = fa_icon :edit
+            = link_to [@my_client, item], :method => :delete,
+            :data => { :confirm => t('buttons.confirm.my_item') },
+            class: 'btn btn-danger' do
+              = fa_icon :times

@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20170502152223) do
     t.float    "length"
     t.float    "weight"
     t.date     "incoming_date"
-    t.integer  "my_client_id"
+    t.integer  "my_client_id",  null: false
     t.date     "issue_date"
-    t.integer  "my_rack_id"
+    t.integer  "my_rack_id",    null: false
     t.integer  "position"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
